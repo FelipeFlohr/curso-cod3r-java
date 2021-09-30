@@ -20,7 +20,5 @@ public class Main {
         List<String> outrasLinguagens = Arrays.asList("C", "PHP", "Kotlin\n");
         outrasLinguagens.stream().forEach(print); // Gerando uma stream a partir de uma lista
         outrasLinguagens.parallelStream().forEach(print); // Gerando uma stream paralela a partir de uma lista
-
-
     }
 }
