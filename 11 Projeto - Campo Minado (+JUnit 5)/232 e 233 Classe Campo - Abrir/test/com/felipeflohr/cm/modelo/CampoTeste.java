@@ -102,13 +102,13 @@ class CampoTeste {
 	void testeAbrirNaoMinadoNaoMarcado() {
 		assertTrue(campo.abrir());
 	}
-	
+
 	@Test
 	void testeAbrirNaoMinadoMarcado() {
 		campo.alternarMarcacao();
 		assertFalse(campo.abrir());
 	}
-	
+
 	@Test
 	void testeAbrirMinadoMarcado() {
 		campo.alternarMarcacao();
@@ -116,7 +116,7 @@ class CampoTeste {
 		assertFalse(campo.abrir());
 	}
 
-	// Irá gerar uma exceção
+	// Irï¿½ gerar uma exceï¿½ï¿½o
 	@Test
 	void testeAbrirMinadoNaoMarcado() {
 		campo.minar();
@@ -125,20 +125,20 @@ class CampoTeste {
 		});
 	}
 
-	// Irá checar se vizinhos reais estão abrindo os campos
+	// Irï¿½ checar se vizinhos reais estï¿½o abrindo os campos
 	@Test
 	void testeAbrirComVizinhos() {
-		Campo campo11 = new Campo(1, 1); // Este campo não irá abrir pois não tem vizinhança segura
+		Campo campo11 = new Campo(1, 1); // Este campo nï¿½o irï¿½ abrir pois nï¿½o tem vizinhanï¿½a segura
 		Campo campo12 = new Campo(1, 2);
 		campo12.minar();
-		
+
 		Campo campo22 = new Campo(2, 2);
 		campo22.adicionarVizinho(campo11);
 		campo22.adicionarVizinho(campo12);
-		
+
 		campo.adicionarVizinho(campo22);
 		campo.abrir();
-		
+
 		assertTrue(campo22.isAberto() && !campo11.isAberto());
 	}
 }
