@@ -67,7 +67,7 @@ public class TabuleiroConsole {
 	}
 
 	private String capturarValorDigitado(String texto) {
-		System.out.println(texto);
+		System.out.print(texto);
 		String digitado = scanner.nextLine();
 
 		if("sair".equalsIgnoreCase(digitado)) {
