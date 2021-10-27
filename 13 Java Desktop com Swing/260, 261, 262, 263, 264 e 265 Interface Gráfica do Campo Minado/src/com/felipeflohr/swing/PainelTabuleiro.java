@@ -13,8 +13,18 @@ public class PainelTabuleiro extends JPanel {
 
         tabuleiro.paraCadaCampo(c -> add(new BotaoCampo(c)));
 
+        // Solução multithreading para resolver o problema do "X" somente apa-
+        // recer após a mensagem ser fechada
         tabuleiro.registrarObservador(e -> {
-            // TODO mostrar resultado para o usuário
+            SwingUtilities.invokeLater(() -> {
+                if (e.isGanhou()) {
+                    JOptionPane.showMessageDialog(null, "Ganhou!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Perdeu!");
+                }
+
+                tabuleiro.reiniciar();
+            });
         });
     }
 }
