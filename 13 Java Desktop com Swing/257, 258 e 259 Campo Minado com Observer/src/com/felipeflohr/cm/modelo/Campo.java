@@ -13,10 +13,20 @@ public class Campo {
 	private boolean marcado = false; // Quando o jogo identifica que h� uma mina no campo
 
 	private List<Campo> vizinhos = new ArrayList<>();
+	private List<CampoObservador> observadores = new ArrayList<>();
 
 	Campo(int linha, int coluna) {
 		this.linha = linha;
 		this.coluna = coluna;
+	}
+
+	public void registrarObservador(CampoObservador observador) {
+		observadores.add(observador);
+	}
+
+	private void notificarObservadores(CampoEvento evento) {
+		observadores.stream()
+				.forEach(obs -> obs.eventoOcorreu(this, evento));
 	}
 
 	boolean adicionarVizinho(Campo vizinho) {
@@ -53,27 +63,35 @@ public class Campo {
 	void alternarMarcacao() {
 		if(!aberto) {
 			marcado = !marcado;
+
+			if(marcado) {
+				notificarObservadores(CampoEvento.MARCAR);
+			} else {
+				notificarObservadores(CampoEvento.DESMARCAR);
+			}
 		}
 	}
 
 	// Método para abrir um campo
 	boolean abrir() {
 		if(!aberto && !marcado) {
-			aberto = true;
-			
 			if(minado) {
-				// TODO Implementar nova versão
+				notificarObservadores(CampoEvento.EXPLODIR);
+				return true;
 			}
-			
-			// Se a vizinhan�a for segura, ir� abrir para os mesmos
+
+			setAberto(true);
+			notificarObservadores(CampoEvento.ABRIR);
+
+			// Se a vizinhança for segura, irá abrir para os mesmos
 			if(vizinhancaSegura()) {
 				vizinhos.forEach(v -> v.abrir()); // Recursivo
 			}
-			
-			return true;
-		}
 
-		return false;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// Método para ver se os campos ao redor estão seguros
@@ -116,6 +134,10 @@ public class Campo {
 
 	public void setAberto(boolean a) {
 		this.aberto = a;
+
+		if(aberto) {
+			notificarObservadores(CampoEvento.ABRIR);
+		}
 	}
 	
 	public boolean isMinado() {
