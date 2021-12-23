@@ -5,7 +5,7 @@ import com.felipeflohr.jpa.infra.DAO;
 public class Main {
 
 	public static void main(String[] args) {
-		Filme filmeA = new Filme("Star Wars Epis�dio 4", 8.9);
+		Filme filmeA = new Filme("Star Wars Episódio 4", 8.9);
 		Filme filmeB = new Filme("O Fugitivo", 8.1);
 		
 		Ator atorA = new Ator("Harrison Ford");
