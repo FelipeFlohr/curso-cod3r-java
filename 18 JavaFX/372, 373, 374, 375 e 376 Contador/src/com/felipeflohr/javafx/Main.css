@@ -1,0 +1,14 @@
+.conteudo { /* Dentro do mundo CSS, tudo o que começa com "." é uma "classe CSS" */
+	-fx-background-color: black; /* O prefixo "-fx-" está relacionado ao JavaFX */
+	-fx-font-family: Raleway;
+}
+
+.titulo {
+	-fx-text-fill: #bbf;
+	-fx-font-size: 28px;
+}
+
+.numero {
+	-fx-text-fill: #e4e7e6;
+	-fx-font-size: 28px;
+}
