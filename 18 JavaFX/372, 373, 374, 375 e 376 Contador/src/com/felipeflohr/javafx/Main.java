@@ -10,6 +10,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	
+	private int contador = 0;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -17,7 +19,16 @@ public class Main extends Application {
 		Label labelNumero = new Label("0");
 
 		Button botaoDecremento = new Button("-");
+		botaoDecremento.setOnAction(e -> {
+			contador--;
+			labelNumero.setText(String.valueOf(contador));
+		});
+
 		Button botaoIncremento = new Button("+");
+		botaoIncremento.setOnAction(e -> {
+			contador++;
+			labelNumero.setText(String.valueOf(contador));
+		});
 
 		HBox boxBotoes = new HBox();
 		boxBotoes.setAlignment(Pos.CENTER); // Define o alinhamento da box dos botões
