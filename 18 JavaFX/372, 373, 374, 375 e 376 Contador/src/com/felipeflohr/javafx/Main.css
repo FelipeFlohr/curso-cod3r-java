@@ -12,3 +12,20 @@
 	-fx-text-fill: #e4e7e6;
 	-fx-font-size: 28px;
 }
+
+.botoes {
+	-fx-background-color: #fff;
+	-fx-text-fill: #408080;
+	-fx-font-size: 24px;
+	-fx-min-width: 60px;
+	-fx-min-height: 60px;
+	-fx-background-radius: 30px;
+}
+
+.verde {
+	-fx-text-fill: #47d744;
+}
+
+.vermelho {
+	-fx-text-fill: #ea2424;
+}

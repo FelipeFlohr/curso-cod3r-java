@@ -12,25 +12,30 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	
 	private int contador = 0;
+	private Label labelNumero;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Label labelTitulo = new Label("Contador");
-		labelTitulo.getStyleClass().add("titulo");
+		labelTitulo.getStyleClass().add("titulo"); // Define o estilo da label como sendo da classe "título"
 
-		Label labelNumero = new Label("0");
-		labelNumero.getStyleClass().add("numero");
+		labelNumero = new Label("0");
+		labelNumero.getStyleClass().add("numero"); // Define o estilo da label como sendo da classe "numero"
 
 		Button botaoDecremento = new Button("-");
+		botaoDecremento.getStyleClass().add("botoes"); // Define o estilo do botão
 		botaoDecremento.setOnAction(e -> { // Faz com que o contador diminua
 			contador--;
 			labelNumero.setText(String.valueOf(contador));
+			checarCondicionalNumero();
 		});
 
 		Button botaoIncremento = new Button("+");
+		botaoIncremento.getStyleClass().add("botoes"); // Define o estilo do botão
 		botaoIncremento.setOnAction(e -> { // Faz com que o contador aumente
 			contador++;
 			labelNumero.setText(String.valueOf(contador));
+			checarCondicionalNumero();
 		});
 
 		HBox boxBotoes = new HBox();
@@ -43,6 +48,8 @@ public class Main extends Application {
 		boxConteudo.getStyleClass().add("conteudo"); // Adiciona a classe CSS que representa o estilo da Box
 		boxConteudo.setAlignment(Pos.CENTER); // Define o alinhamento da box principal
 		boxConteudo.setSpacing(10); // Define o espaçamento entre os elementos da box
+
+		// Adicionando elementos
 		boxConteudo.getChildren().add(labelTitulo);
 		boxConteudo.getChildren().add(labelNumero);
 		boxConteudo.getChildren().add(boxBotoes);
@@ -50,10 +57,20 @@ public class Main extends Application {
 		String caminhoDoCss = getClass().getResource("/com/felipeflohr/javafx/Main.css").toExternalForm();
 		Scene cenaPrincipal = new Scene(boxConteudo, 400, 400); // Frame principal
 		cenaPrincipal.getStylesheets().add(caminhoDoCss); // Adiciona a estilização na aplicação
-		cenaPrincipal.getStylesheets().add("https://fonts.googleapis.com/css2?family=Raleway");
+		cenaPrincipal.getStylesheets().add("https://fonts.googleapis.com/css2?family=Raleway"); // Adiciona a fonte Raleway á aplicação
 		
 		primaryStage.setScene(cenaPrincipal);
 		primaryStage.show(); // Mostra a janela
+	}
+	
+	private void checarCondicionalNumero() {
+		if (contador < 0) {
+			labelNumero.getStyleClass().remove("verde");
+			labelNumero.getStyleClass().add("vermelho");
+		} else {
+			labelNumero.getStyleClass().remove("vermelho");
+			labelNumero.getStyleClass().add("verde");
+		}
 	}
 
 	public static void main(String[] args) {
