@@ -14,7 +14,7 @@ HTTP (Hyper Text Transfer Protocol) é um protocolo de comunicação para sistem
 GET / HTTP / 1.1 
 Host: www.google.com.br
 ```
-3. Servidor Web gera a Resposta (a reposta possui um cabeçalho mostrando as informações e um corpo mostrando o conteúdo da página em si):
+3. Servidor Web gera a Resposta (a reposta possui um cabeçalho mostrando as informações e um corpo mostrando o conteúdo em si):
 ```
 HTTP 1.1 200 OK
 content-Type: text/html; charset=UTF-8
