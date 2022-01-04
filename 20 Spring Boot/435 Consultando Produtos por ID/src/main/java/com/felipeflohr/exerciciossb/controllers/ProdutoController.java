@@ -22,17 +22,20 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
+	// Create
 	@PostMapping
-	public @ResponseBody Produto novoProduto(@Valid Produto produto) { // A Annotation "Valid" serve para explicitar que este produto tem que ser válido
+	public @ResponseBody Produto novoProduto(@Valid Produto produto) {
 		produtoRepository.save(produto);
 		return produto;
 	}
 
+	// Read
 	@GetMapping
 	public Iterable<Produto> obterProdutos() {
 		return produtoRepository.findAll();
 	}
 
+	// Read
 	@GetMapping(path = "/{id}")
 	public Optional<Produto> obterProdutoPorId(@PathVariable int id) {
 		return produtoRepository.findById(id);
